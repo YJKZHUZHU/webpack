@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtrectPlugin = require('mini-css-extract-plugin')//将css文件从js代码中抽离
+const MiniCssExtrectPlugin = require('mini-css-extract-plugin') //将css文件从js代码中抽离
 const ENTRY_PATH = path.resolve(__dirname, '../src/index.js')
 const OUT_PATH = path.resolve(__dirname, '../dist')
 
@@ -24,18 +24,23 @@ module.exports = {
 				//loader的执行顺序，右----> 左执行，下----> 上
 				//postcss-loader 样式前缀
 				test: /\.css$/,
-				use: [MiniCssExtrectPlugin.loader, 'css-loader','postcss-loader'],
+				use: [MiniCssExtrectPlugin.loader, 'css-loader', 'postcss-loader'],
 				exclude: /node_modules/
 			},
 			{
 				test: /\.less$/,
 				exclude: /node_modules/,
-				use: [MiniCssExtrectPlugin.loader,'css-loader', 'less-loader','postcss-loader']
+				use: [MiniCssExtrectPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
 			},
 			{
 				test: /\.scss/,
 				exclude: /node_modules/,
-				use: [MiniCssExtrectPlugin.loader,'css-loader','sass-loader','postcss-loader']
+				use: [MiniCssExtrectPlugin.loader, 'css-loader', 'sass-loader', 'postcss-loader']
+			},
+			{
+				test:/\.js$/,
+				exclude: /node_modules/,
+				use :'babel-loader'
 			}
 		]
 
